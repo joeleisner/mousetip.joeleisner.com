@@ -1,0 +1,6 @@
+# All robots allowed
+User-agent: *
+Disallow:
+
+# Sitemap
+Sitemap: https://mousetip.joeleisner.com/sitemap.xml

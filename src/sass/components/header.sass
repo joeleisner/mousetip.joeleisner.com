@@ -1,0 +1,171 @@
+// Header
+
+@import "../shared/animations"
+@import "../shared/colors"
+@import "../shared/effects"
+@import "../shared/mq"
+
+=header--theme-light
+    --header-background-purple: #{$mousetip-crimson}
+    --header-background-blue: #{$mousetip-pink}
+    --header__nav-link--active-background-color: #{$white}
+    --header__nav-link--active-color: #{$slate}
+    --header__nav-link--active-hover-focus-background-color: #{$light-gray}
+    --header__nav-link--active-hover-focus-color: #{$black}
+    --header__angles-fill: #{$white}
+
+=header--theme-dark
+    --header-background-purple: #{darken($mousetip-crimson, 10%)}
+    --header-background-blue: #{darken($mousetip-pink, 10%)}
+    --header__nav-link--active-background-color: #{darken($slate, 5%)}
+    --header__nav-link--active-color: #{$white}
+    --header__nav-link--active-hover-focus-background-color: #{darken($slate, 10%)}
+    --header__nav-link--active-hover-focus-color: #{$white}
+    --header__angles-fill: #{$black}
+
+\:root
+    +header--theme-light
+
++color-scheme(dark)
+    \:root
+        +header--theme-dark
+
+[data-theme="light"]
+    +header--theme-light
+
+[data-theme="dark"]
+    +header--theme-dark
+
+.header
+    margin-bottom: 1rem
+    background: var(--header-background-purple)
+    background: linear-gradient(45deg, var(--header-background-purple) 0%, var(--header-background-purple) 25%, var(--header-background-blue) 100%)
+    font-size: 1.25rem
+    color: $white
+    overflow: hidden
+
+.header__level-wrapper:after
+    content: ""
+    display: block
+    height: 1px
+    width: 100%
+    margin-bottom: 1rem
+    background: rgba($white, 0.6)
+    background: linear-gradient(90deg, transparent 0%, rgba($white, 0.2) 10%, rgba($white, 0.2) 90%, transparent 100%)
+
+.header__level
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    padding-top: 1rem
+    padding-bottom: .5rem
+
+.header__brand
+    display: flex
+    align-items: center
+    width: 100%
+
+.header__logo
+    fill: $white
+    width: 2rem
+    margin-right: .5rem
+
+.header__title-version
+    flex: 1
+    display: flex
+    align-items: baseline
+
+    a
+        margin-right: .5rem
+        font-size: 1.75rem
+        font-weight: bold
+        text-decoration: none
+        color: $white
+        transition: opacity $transition-timing
+        &:hover, &:focus
+            color: $white
+            opacity: .8
+
+    p
+        margin-bottom: 0
+        opacity: .8
+
+.header__nav-toggle
+    display: inline-flex
+    padding: .25rem .5rem
+    border: none
+    border-radius: $border-radius
+    background-color: transparent
+    font-size: 1.75rem
+    color: $white
+    transition: background-color $transition-timing
+    &:hover, &:focus
+        background-color: rgba($black, .2)
+
+.header__nav
+    display: none
+    margin-top: .5rem
+
+    &.open
+        display: flex
+        flex-direction: column
+        width: 100%
+
+.header__nav-link
+    padding: .5rem
+    border-radius: $border-radius
+    text-decoration: none
+    color: $white
+    transition: background-color $transition-timing, color $transition-timing
+    &:hover, &:focus
+        background-color: rgba($black, .2)
+        text-decoration: none
+        color: $white
+
+.header__nav-link--active
+    background-color: var(--header__nav-link--active-background-color)
+    color: var(--header__nav-link--active-color)
+    box-shadow: $drop-shadow
+    &:hover, &:focus
+        background-color: var(--header__nav-link--active-hover-focus-background-color)
+        text-decoration: none
+        color: var(--header__nav-link--active-hover-focus-color)
+
+.header__summary p
+    line-height: 1.5
+
+.header__angles
+    display: block
+    fill: var(--header__angles-fill)
+    margin-bottom: -10px
+    min-width: 1440px
+
++breakpoint('sm')
+    .header__level-wrapper:after
+        margin-bottom: 1.5rem
+
+    .header__level
+        flex-direction: row
+
+    .header__brand
+        width: auto
+
+    .header__nav-toggle
+        display: none
+
+    .header__nav, .header__nav.open
+        display: flex
+        flex-direction: row
+        width: auto
+
+    .header__nav-link
+        padding: .25rem .5rem
+
++breakpoint('md')
+    .header__level-wrapper:after
+        margin-bottom: 2rem
+
++breakpoint('lg')
+    .header__level-wrapper:after
+        margin-bottom: 3rem

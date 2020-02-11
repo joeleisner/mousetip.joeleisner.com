@@ -1,0 +1,52 @@
+// Scroll to top
+
+@import "../shared/animations"
+@import "../shared/colors"
+@import "../shared/effects"
+@import "../shared/mq"
+
+=scrolltotop--theme-light
+    --scrolltotop-border-color: #{darken($mousetip-pink, 5%)}
+    --scrolltotop-background-color: #{$mousetip-pink}
+
+=scrolltotop--theme-dark
+    --scrolltotop-border-color: #{darken($mousetip-pink, 15%)}
+    --scrolltotop-background-color: #{darken($mousetip-pink, 10%)}
+
+\:root
+    +scrolltotop--theme-light
+
++color-scheme(dark)
+    \:root
+        +scrolltotop--theme-dark
+
+[data-theme="light"]
+    +scrolltotop--theme-light
+
+[data-theme="dark"]
+    +scrolltotop--theme-dark
+
+.scroll-to-top
+    position: fixed
+    bottom: 1rem
+    right: -76px
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 60px
+    height: 60px
+    padding: 0
+    border: 1px solid var(--scrolltotop-border-color)
+    border-radius: 100%
+    background-color: var(--scrolltotop-background-color)
+    font-size: 2rem
+    line-height: 1
+    color: $white
+    transition: right $transition-timing, background-color $transition-timing
+    box-shadow: $drop-shadow
+    &:hover, &:focus
+        background-color: var(--scrolltotop-border-color)
+
+.scroll-to-top:focus,
+.scroll-to-top--visible
+    right: 1rem

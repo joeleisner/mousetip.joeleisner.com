@@ -1,0 +1,93 @@
+// Index page
+
+@import "../shared/animations"
+@import "../shared/colors"
+@import "../shared/effects"
+@import "../shared/mq"
+
+=index--theme-light
+    --index__button--highlight-border-color: #{darken($light-gray, 5%)}
+    --index__button--highlight-background-color: #{$white}
+    --index__button--highlight-color: #{$slate}
+    --index__button--highlight-hover-focus-background-color: #{$light-gray}
+    --index__button--highlight-hover-focus-color: #{$black}
+    --index__perk-border-color: #{darken($light-gray, 5%)}
+    --index__perk-background-color: #{$white}
+
+=index--theme-dark
+    --index__button--highlight-border-color: #{$black}
+    --index__button--highlight-background-color: #{darken($slate, 5%)}
+    --index__button--highlight-color: #{$white}
+    --index__button--highlight-hover-focus-background-color: #{darken($slate, 10%)}
+    --index__button--highlight-hover-focus-color: #{$white}
+    --index__perk-border-color: #{darken($slate, 10%)}
+    --index__perk-background-color: #{darken($slate, 5%)}
+
+\:root
+    +index--theme-light
+
++color-scheme(dark)
+    \:root
+        +index--theme-dark
+
+[data-theme="light"]
+    +index--theme-light
+
+[data-theme="dark"]
+    +index--theme-dark
+
+.index__buttons
+    display: flex
+    flex-direction: column
+    margin-bottom: 1rem
+
+.index__button
+    display: inline-flex
+    align-items: center
+    padding: .75rem 1rem
+    border: 1px solid transparent
+    border-radius: $border-radius
+    font-weight: bold
+    text-decoration: none
+    color: $white
+    transition: background-color $transition-timing, color $transition-timing
+    &:hover, &:focus
+        background-color: rgba($black, .2)
+        color: $white
+
+    svg
+        margin-right: .5rem
+
+.index__button--highlight
+    border-color: var(--index__button--highlight-border-color)
+    background-color: var(--index__button--highlight-background-color)
+    color: var(--index__button--highlight-color)
+    box-shadow: $drop-shadow
+    &:hover, &:focus
+        background-color: var(--index__button--highlight-hover-focus-background-color)
+        color: var(--index__button--highlight-hover-focus-color)
+
+.index__perk
+    margin-bottom: 1rem
+    padding: 1rem
+    border: 1px solid var(--index__perk-border-color)
+    border-radius: $border-radius
+    background-color: var(--index__perk-background-color)
+    text-align: center
+    box-shadow: $drop-shadow
+
+.index__perk-title
+    font-size: 1.75rem
+
+    svg
+        margin-right: .5rem
+
+.index__perk-description
+    margin-bottom: 0
+
++breakpoint('sm')
+    .index__buttons
+        flex-direction: row
+
+    .index__button--highlight
+        margin-right: 1rem
