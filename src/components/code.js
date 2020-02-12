@@ -23,9 +23,10 @@ class Code extends React.Component {
 
         if (!this.props.mousetip) return;
     
-        const mouseTip = new MouseTip(this.props.settings);
+        const mouseTip = new MouseTip(this.props.settings),
+            targets    = this.refs.example.querySelectorAll(`[${ mouseTip.selector.full }], [${ mouseTip.selector.short }]`);
 
-        mouseTip.start(Array.from(this.refs.example.querySelectorAll(`[${ mouseTip.selector.full }], [${ mouseTip.selector.short }]`)));
+        mouseTip.start(targets);
     }
 
     componentDidMount() {
