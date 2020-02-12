@@ -89,7 +89,8 @@ const IndexPage = () => (
             <li>
                 Optimizations have been made to make things faster and less resource intensive.
                 <ul>
-                    <li>For each element using Pure JS Mousetip, there's 2 event listeners instead of 3.</li>
+                    <li>Elements can be passed into the <code>.start()</code> method to override the default behavior of searching the document for mousetip targets, allowing Pure JS Mousetip to be more easily integrated into other JS libraries, such as React.</li>
+                    <li>For each target element using Pure JS Mousetip, there's 2 event listeners instead of 3.</li>
                     <li><code>window.requestAnimationFrame</code> is used for each update to a mousetip's position.</li>
                 </ul>
             </li>
