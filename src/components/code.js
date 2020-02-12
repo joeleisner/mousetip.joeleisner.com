@@ -15,7 +15,6 @@ class Code extends React.Component {
 
     state = {
         copied: false,
-        example: ''
     };
 
     convertChildrenIntoCodeExample() {
