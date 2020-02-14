@@ -23,8 +23,8 @@ const StartPage = () => (
         <h2>What&rsquo;s a &ldquo;mousetip?&rdquo;</h2>
         <p>Glad you asked! In graphical user interfaces, a tooltip (also referred to as an infotip or hint) is a little dialogue box that will appear when you hover over something with a cursor, often providing more detail or context to what&rsquo;s being hovered. You&rsquo;ve probably seen these everywhere, as they&rsquo;re an effective way of showing information when it visually doesn&rsquo;t make sense for it to be seen at all times. An example of a traditional JS tooltip library is <ExternalLink href="https://popper.js.org/">Popper</ExternalLink>, which is used in <ExternalLink href="https://getbootstrap.com/">Bootstrap</ExternalLink>.</p>
         <p>Pure JS Mousetip is a reimagining of the tooltip paradigm, allowing that little dialogue box to follow the cursor as you move the mouse over an element. This gives the added benefit of ensuring the information is front-and-center and easily visible to a user. To see it in action, hover over the example below:</p>
-        <Code>{`<div mousetip mousetip:msg="Test message!">
-    <span><strong>mousetip:msg</strong>="Test message!"</span>
+        <Code>{`<div mousetip mousetip:message="Test message!">
+    <span><strong>mousetip:message</strong>="Test message!"</span>
 </div>`}</Code>
         <Alert type="warning">
             <p>Pure JS Mousetip only works when using a mouse, so if you&rsquo;re viewing this from a smartphone or some tablets, the above example will not work as touch support is not yet an added feature.</p>
