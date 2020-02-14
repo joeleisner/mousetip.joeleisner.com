@@ -1,0 +1,43 @@
+// Definition
+
+@import "../shared/colors"
+@import "../shared/mq"
+
+=definition--theme-light
+    --definition-active-color: #{$mousetip-crimson}
+    --definition-border-color: #{darken($light-gray, 5%)}
+
+=definition--theme-dark
+    --definition-active-color: #{$mousetip-pink}
+    --definition-border-color: #{$slate}
+
+\:root
+    +definition--theme-light
+
++color-scheme(dark)
+    \:root
+        +definition--theme-dark
+
+[data-theme="light"]
+    +definition--theme-light
+
+[data-theme="dark"]
+    +definition--theme-dark
+
+.definition__title
+    scroll-margin-top: 1rem
+
+.definition--active .definition__title
+    color: var(--definition-active-color)
+
+.definition__attributes
+    list-style: none
+    line-height: 1.5
+
+.definition__attributes,
+.definition__children
+    padding-left: 1rem
+    border-left: .25rem solid var(--definition-border-color)
+
+.definition--active .definition__attributes,
+    border-color: var(--definition-active-color)
