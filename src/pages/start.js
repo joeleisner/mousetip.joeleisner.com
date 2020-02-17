@@ -25,6 +25,7 @@ const StartPage = () => (
         <p>Pure JS Mousetip is a reimagining of the tooltip paradigm, allowing that little dialogue box to follow the cursor as you move the mouse over an element. This gives the added benefit of ensuring the information is front-and-center and easily visible to a user. To see it in action, hover over the example below:</p>
         <Code>{`<div mousetip mousetip:message="Test message!">
     <span><strong>mousetip:message</strong>="Test message!"</span>
+    <span><strong>mt:m</strong>="Test message!"</span>
 </div>`}</Code>
         <Alert type="warning">
             <p>Pure JS Mousetip only works when using a mouse, so if you&rsquo;re viewing this from a smartphone or some tablets, the above example will not work as touch support is not yet an added feature.</p>
