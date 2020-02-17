@@ -8,7 +8,38 @@ import ScrollToTop from './scrolltotop';
 
 import '../sass/components/layout.sass';
 
-const Layout = ({ summary, children }) => {
+const generateTOCList = element => {
+
+    const { children, id } = element.props;
+
+    console.log(element, children, id);
+
+    // console.log(element);
+    // if (![ 'h2', 'h3', 'h4' ].includes(element.type)) return;
+    // if (!element.props.id) return;
+
+    // // if (element.type !== 'h2') {
+    // //     const parentIndex = toc.length - 1,
+    // //         parent        = toc[parentIndex];
+    // //     if (typeof parent === 'string') toc[parentIndex] = { name: parent, children: [] };
+    // //     toc[parentIndex].children.push(element.id);
+    // //     return element;
+    // // }
+
+    // console.log(element.id);
+
+    return element.props.id;
+};
+
+const includeTOC = children => {
+    const toc = React.Children.map(children, generateTOCList);
+    console.log(toc);
+    return (
+        children
+    );
+};
+
+const Layout = ({ summary, toc, children }) => {
     const data = useStaticQuery(graphql`
             query DataQuery {
                 site {
@@ -35,7 +66,7 @@ const Layout = ({ summary, children }) => {
                     <div className="row">
                         <div className="col">
                             <main>
-                                {children}
+                                { toc ? includeTOC(children) : children }
                                 <ScrollToTop />
                             </main>
                         </div>
@@ -48,7 +79,16 @@ const Layout = ({ summary, children }) => {
 };
 
 Layout.propTypes = {
+    summary: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.string
+    ]).isRequired,
+    toc: PropTypes.bool,
     children: PropTypes.node.isRequired
+};
+
+Layout.defaultProps = {
+    toc: false
 };
 
 export default Layout;
