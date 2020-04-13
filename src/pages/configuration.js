@@ -63,37 +63,57 @@ const ConfigurationPage = () => (
 });`}</Code>
             </TabPanel>
             <TabPanel>
-                <h2 className="h5">animations</h2>
+                <h2>Animations</h2>
+                <Code language="javascript" example={false}>{`// Disables animations
+{
+    animations: false
+}
+
+// Overwrites animation defaults
+{
+    animations: {
+        duration: '.5s',
+        from:     'transform:translateY(1rem);opacity:0;',
+        name:     'awesomeTransition',
+        to:       'transform:translateY(-1rem);opacity:1;',
+        timing:   'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+    }
+}`}</Code>
+                <h3 className="h5">animations</h3>
                 <ul>
                     <li>Type: <code>Boolean | Object</code></li>
                     <li>Default: <code>true</code></li>
                 </ul>
-                <p>Either enables or disables mousetip animations when set to a <code>Boolean</code> or overrides animation defaults when set to an <code>Object</code>.</p>
-                <h3 className="h5">animations.duration</h3>
+                <p>Either enables or disables mousetip animations when set to a <code>Boolean</code> or overwrites animation defaults when set to an <code>Object</code>.</p>
+                <ul>
+                    <li>Enables mousetip animations when set to <code>true</code></li>
+                    <li>Disables mousetip animations when set to <code>false</code></li>
+                </ul>
+                <h4 className="h5">animations.duration</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'.2s'</code></li>
                 </ul>
                 <p>Sets the duration of mousetip animations.</p>
-                <h3 className="h5">animations.from</h3>
+                <h4 className="h5">animations.from</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'transform:translateY(.5rem);opacity:0;'</code></li>
                 </ul>
                 <p>Sets the starting point of mousetip animations when created and the default ending point of mousetip animations when deleted.</p>
-                <h3 className="h5">animations.name</h3>
+                <h4 className="h5">animations.name</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'mouseTipTransition'</code></li>
                 </ul>
                 <p>Sets the <code>@keyframes</code> name used for mousetip animations.</p>
-                <h3 className="h5">animations.to</h3>
+                <h4 className="h5">animations.to</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'transform:translateY(0);opacity:1;'</code></li>
                 </ul>
                 <p>Sets the ending point of mousetip animations when created and the default starting point of mousetip animations when deleted.</p>
-                <h3 className="h5">animations.timing</h3>
+                <h4 className="h5">animations.timing</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'ease-in-out'</code></li>
@@ -104,7 +124,11 @@ const ConfigurationPage = () => (
                 </Alert>
             </TabPanel>
             <TabPanel>
-                <h2 className="h5">direction</h2>
+                <h2>Direction</h2>
+                <Code language="javascript" example={false}>{`{
+    direction: [ 'top', 'left' ]
+}`}</Code>
+                <h3 className="h5">direction</h3>
                 <ul>
                     <li>Type: <code>Array</code></li>
                     <li>Default: <code>[ 'bottom', 'right' ]</code></li>
@@ -120,23 +144,39 @@ const ConfigurationPage = () => (
                 </Alert>
             </TabPanel>
             <TabPanel>
-                <h2 className="h5">html</h2>
+                <h2>HTML</h2>
+                <Code language="javascript" example={false}>{`{
+    html: false
+}`}</Code>
+                <h3 className="h5">html</h3>
                 <ul>
                     <li>Type: <code>Boolean</code></li>
                     <li>Default: <code>true</code></li>
                 </ul>
                 <p>Enables or disables the ability to put HTML code within a mousetip&rsquo;s message.</p>
+                <ul>
+                    <li>Enables the use of HTML code within a mousetip's message when set to <code>true</code></li>
+                    <li>Disables the use of HTML code within a mousetip's message when set to <code>false</code></li>
+                </ul>
             </TabPanel>
             <TabPanel>
-                <h2 className="h5">message</h2>
+                <h2>Message</h2>
+                <Code language="javascript" example={false}>{`{
+    message: 'Default message!'
+}`}</Code>
+                <h3 className="h5">message</h3>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>''</code></li>
                 </ul>
-                <p>Sets a default message for every mousetip if a local message is not set.</p>
+                <p>Sets a default message for every mousetip if a message is not set via local attribute.</p>
             </TabPanel>
             <TabPanel>
-                <h2 className="h5">offset</h2>
+                <h2>Offset</h2>
+                <Code language="javascript" example={false}>{`{
+    offset: 20
+}`}</Code>
+                <h3 className="h5">offset</h3>
                 <ul>
                     <li>Type: <code>Number</code></li>
                     <li>Default: <code>15</code></li>
@@ -144,19 +184,32 @@ const ConfigurationPage = () => (
                 <p>Acts as additional pixel spacing for a mousetip&rsquo;s <code>direction</code>.</p>
             </TabPanel>
             <TabPanel>
-                <h2 className="h5">selector</h2>
+                <h2>Selector</h2>
+                <Code language="javascript" example={false}>{`// Sets the full and short selector
+{
+    selector: {
+        full:  'awesome',
+        short: 'awe'
+    }
+}
+
+// Sets the full selector
+{
+    selector: 'awesome'
+}`}</Code>
+                <h3 className="h5">selector</h3>
                 <ul>
                     <li>Type: <code>Object | String</code></li>
                     <li>Default: <code>{'{}'}</code></li>
                 </ul>
                 <p>Either overrides selector defaults when set to an <code>Object</code> or changes the full selector when set to a <code>String</code>.</p>
-                <h3 className="h5">selector.full</h3>
+                <h4 className="h5">selector.full</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'mousetip'</code></li>
                 </ul>
                 <p>Sets the full selector.</p>
-                <h3 className="h5">selector.short</h3>
+                <h4 className="h5">selector.short</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'mt'</code></li>
@@ -167,57 +220,77 @@ const ConfigurationPage = () => (
                 </Alert>
             </TabPanel>
             <TabPanel>
-                <h2 className="h5">stylesheet</h2>
+                <h2>Stylesheet</h2>
+                <Code language="javascript" example={false}>{`{
+    stylesheet: true
+}`}</Code>
+                <h3 className="h5">stylesheet</h3>
                 <ul>
                     <li>Type: <code>Boolean</code></li>
                     <li>Default: <code>false</code></li>
                 </ul>
-                <p>Declares if a custom stylesheet is being used and not to apply default global styles if <code>true</code>.</p>
+                <p>Declares if a custom stylesheet is being used and whether or not to apply default global styles.</p>
+                <ul>
+                    <li>Disables default global styles when set to <code>true</code></li>
+                    <li>Enables default global styles when set to <code>false</code></li>
+                </ul>
             </TabPanel>
             <TabPanel>
-                <h2 className="h5">styles</h2>
+                <h2>Styles</h2>
+                <Code language="javascript" example={false}>{`{
+    styles: {
+        backgroundColor: '#000',
+        borderRadius:    '.5rem',
+        color:           '#f44336',
+        display:         'inline-flex',
+        padding:         '.25rem .5rem',
+        position:        'relative',
+        zIndex:          '10000'
+    }
+}`}</Code>
+                <h3 className="h5">styles</h3>
                 <ul>
                     <li>Type: <code>Object</code></li>
                     <li>Default: <code>{'{}'}</code></li>
                 </ul>
                 <p>Overrides global style defaults.</p>
-                <h3 className="h5">styles.backgroundColor</h3>
+                <h4 className="h5">styles.backgroundColor</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'rgba(0,0,0,.75)'</code></li>
                 </ul>
                 <p>Sets the global background color for any mousetip.</p>
-                <h3 className="h5">styles.borderRadius</h3>
+                <h4 className="h5">styles.borderRadius</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'.25rem'</code></li>
                 </ul>
                 <p>Sets the global border radius for any mousetip.</p>
-                <h3 className="h5">styles.color</h3>
+                <h4 className="h5">styles.color</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'#fff'</code></li>
                 </ul>
                 <p>Sets the global text color for any mousetip.</p>
-                <h3 className="h5">styles.display</h3>
+                <h4 className="h5">styles.display</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'inline-block'</code></li>
                 </ul>
                 <p>Sets the global display property for any mousetip.</p>
-                <h3 className="h5">styles.padding</h3>
+                <h4 className="h5">styles.padding</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'.75rem 1rem'</code></li>
                 </ul>
                 <p>Sets the global padding for any mousetip.</p>
-                <h3 className="h5">styles.position</h3>
+                <h4 className="h5">styles.position</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'absolute'</code></li>
                 </ul>
                 <p>Sets the global position property for any mousetip.</p>
-                <h3 className="h5">styles.zIndex</h3>
+                <h4 className="h5">styles.zIndex</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
                     <li>Default: <code>'9999'</code></li>
