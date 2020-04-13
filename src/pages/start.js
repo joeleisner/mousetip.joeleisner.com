@@ -42,20 +42,16 @@ const StartPage = () => (
             <p><code>mousetip.js</code> and <code>mousetip.min.js</code> target modern browsers with ES2015+ support. If you need to support older browsers, you should use <code>mousetip.legacy.js</code>, <code>mousetip.legacy.min.js</code>, or simply bundle Pure JS Mousetip into your build system.</p>
         </Alert>
         <h2>Advanced setup</h2>
-        <p>In addition to the basic setup, Pure JS Mousetip can be pulled into your project as a Node.js module. First, ensure you have Pure JS Mousetip installed as an NPM package within your project:</p>
+        <p>In addition to the basic setup, Pure JS Mousetip can be pulled into your project as an NPM package. First, ensure you have Pure JS Mousetip installed...</p>
         <Code language={'shell'} example={false}>
             npm install purejs-mousetip
         </Code>
-        <p>Then simply require it to get the ball rolling!</p>
-        <Code language={'javascript'} example={false}>{`const MouseTip = require('purejs-mousetip');
+        <p>... and pull it in where needed!</p>
+        <Code language={'javascript'} example={false}>{`/* CommonJS/Node.js */
+const MouseTip = require('purejs-mousetip');
 
-const mouseTip = new MouseTip();
-mouseTip.start();`}</Code>
-        <p>You can also import it as an ES2015 module like so:</p>
-        <Code language={'javascript'} example={false}>{`import MouseTip from 'purejs-mousetip';
-
-const mouseTip = new MouseTip();
-mouseTip.start();`}</Code>
+/* ES2015 Module */
+import MouseTip from 'purejs-mousetip';`}</Code>
         <Alert>
             <p>If you&rsquo;re working with ES2015 modules outside of a Node.js build system, you can always use the module build of <code>mousetip.js</code> (located in <code>/dist/modules</code> of the <code>purejs-mousetip</code> NPM package).</p>
         </Alert>
