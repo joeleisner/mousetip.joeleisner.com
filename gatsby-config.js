@@ -8,12 +8,12 @@ module.exports = {
         defaultImage: '/images/thumbnail.png',
         navigation: [
             {
-                name: 'Getting started',
+                name: 'Start',
                 path: '/start'
             },
             {
-                name: 'Documentation',
-                path: '/documentation'
+                name: 'Configuration',
+                path: '/configuration'
             }
         ]
     },
