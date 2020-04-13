@@ -4,9 +4,7 @@ import Alert from '../components/alert';
 import Code from '../components/code';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
-
-import '../sass/components/tabs.sass';
+import { Tabs, TabList, Tab, TabPanel } from '../components/tabs';
 
 const title = 'Global configuration',
     description = 'Pure JS Mousetip lets you to easily overwrite global settings such as animations, selectors, styles, and more to get things exactly how you want it.';
@@ -161,7 +159,7 @@ const ConfigurationPage = () => (
                 <h3 className="h5">selector.short</h3>
                 <ul>
                     <li>Type: <code>String</code></li>
-                    <li>Default: <code>'mousetip'</code></li>
+                    <li>Default: <code>'mt'</code></li>
                 </ul>
                 <p>Sets the short selector.</p>
                 <Alert>
