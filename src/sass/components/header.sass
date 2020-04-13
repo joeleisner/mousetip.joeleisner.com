@@ -6,8 +6,8 @@
 @import "../shared/mq"
 
 =header--theme-light
-    --header-background-purple: #{$mousetip-crimson}
-    --header-background-blue: #{$mousetip-pink}
+    --header-background-crimson: #{$mousetip-crimson}
+    --header-background-pink: #{$mousetip-pink}
     --header__nav-link--active-background-color: #{$white}
     --header__nav-link--active-color: #{$slate}
     --header__nav-link--active-hover-focus-background-color: #{$light-gray}
@@ -15,8 +15,8 @@
     --header__angles-fill: #{$white}
 
 =header--theme-dark
-    --header-background-purple: #{darken($mousetip-crimson, 10%)}
-    --header-background-blue: #{darken($mousetip-pink, 10%)}
+    --header-background-crimson: #{darken($mousetip-crimson, 10%)}
+    --header-background-pink: #{darken($mousetip-pink, 10%)}
     --header__nav-link--active-background-color: #{darken($slate, 5%)}
     --header__nav-link--active-color: #{$white}
     --header__nav-link--active-hover-focus-background-color: #{darken($slate, 10%)}
@@ -38,8 +38,8 @@
 
 .header
     margin-bottom: 1rem
-    background: var(--header-background-purple)
-    background: linear-gradient(45deg, var(--header-background-purple) 0%, var(--header-background-purple) 25%, var(--header-background-blue) 100%)
+    background: var(--header-background-crimson)
+    background: linear-gradient(45deg, var(--header-background-crimson) 0%, var(--header-background-crimson) 25%, var(--header-background-pink) 100%)
     font-size: 1.25rem
     color: $white
     overflow: hidden
@@ -154,9 +154,6 @@
 
     .header__title-version
         a
-            font-size: 1.75rem
-
-        p
             font-size: 1.25rem
 
     .header__nav-toggle
@@ -173,6 +170,13 @@
 +breakpoint('md')
     .header__level-wrapper:after
         margin-bottom: 2rem
+
+    .header__title-version
+        a
+            font-size: 1.5rem
+
+        p
+            font-size: 1.25rem
 
 +breakpoint('lg')
     .header__level-wrapper:after
