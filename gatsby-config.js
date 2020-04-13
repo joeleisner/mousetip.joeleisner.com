@@ -16,6 +16,15 @@ module.exports = {
                 name:  'Configuration',
                 path:  '/configuration',
                 title: 'Global configuration'
+            },
+            {
+                name: 'Methods',
+                path: '/methods'
+            },
+            {
+                name:  'Attributes',
+                path:  '/attributes',
+                title: 'Local attributes'
             }
         ]
     },
