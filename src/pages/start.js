@@ -59,10 +59,10 @@ const StartPage = () => (
                     npm install purejs-mousetip
                 </Code>
                 <p>... and pull it in where needed!</p>
-                <Code language={'javascript'} example={false}>{`/* CommonJS/Node.js */
+                <Code language={'javascript'} example={false}>{`// CommonJS/Node.js
 const MouseTip = require('purejs-mousetip');
 
-/* ES2015 Module */
+// ES2015 Module
 import MouseTip from 'purejs-mousetip';`}</Code>
                 <Alert>
                     <p>If you&rsquo;re working with ES2015 modules outside of a Node.js build system, you can always use the module build of <code>mousetip.js</code> (located in <code>/dist/modules</code> of the <code>purejs-mousetip</code> NPM package).</p>
