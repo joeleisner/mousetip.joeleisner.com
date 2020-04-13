@@ -8,37 +8,6 @@ import ScrollToTop from './scrolltotop';
 
 import '../sass/components/layout.sass';
 
-const generateTOCList = element => {
-
-    const { children, id } = element.props;
-
-    console.log(element, children, id);
-
-    // console.log(element);
-    // if (![ 'h2', 'h3', 'h4' ].includes(element.type)) return;
-    // if (!element.props.id) return;
-
-    // // if (element.type !== 'h2') {
-    // //     const parentIndex = toc.length - 1,
-    // //         parent        = toc[parentIndex];
-    // //     if (typeof parent === 'string') toc[parentIndex] = { name: parent, children: [] };
-    // //     toc[parentIndex].children.push(element.id);
-    // //     return element;
-    // // }
-
-    // console.log(element.id);
-
-    return element.props.id;
-};
-
-const includeTOC = children => {
-    const toc = React.Children.map(children, generateTOCList);
-    console.log(toc);
-    return (
-        children
-    );
-};
-
 const Layout = ({ summary, toc, children }) => {
     const data = useStaticQuery(graphql`
             query DataQuery {
@@ -66,7 +35,7 @@ const Layout = ({ summary, toc, children }) => {
                     <div className="row">
                         <div className="col">
                             <main>
-                                { toc ? includeTOC(children) : children }
+                                { children }
                                 <ScrollToTop />
                             </main>
                         </div>
