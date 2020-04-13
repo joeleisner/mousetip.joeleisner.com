@@ -64,15 +64,16 @@ class Header extends React.Component {
                                         id="header__nav"
                                         className={navClasses}
                                     >
-                                        {navigation.map(({ path, name }) => (
+                                        {navigation.map(({ path, name, ...props }) => (
                                             <Link
-                                                to={path}
+                                                to={ path }
                                                 className="header__nav-link"
                                                 activeClassName="header__nav-link--active"
                                                 partiallyActive={true}
-                                                key={path}
+                                                key={ path }
+                                                { ...props }
                                             >
-                                                {name}
+                                                { name }
                                             </Link>
                                         ))}
                                     </nav>

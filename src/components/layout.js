@@ -18,6 +18,7 @@ const Layout = ({ summary, toc, children }) => {
                         navigation {
                             name
                             path
+                            title
                         }
                     }
                 }
