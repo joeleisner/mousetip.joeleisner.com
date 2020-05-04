@@ -82,7 +82,7 @@ Code.propTypes = {
 Code.defaultProps = {
     language: 'html',
     example: true,
-    mousetip: true,
+    mousetip: false,
     settings: {}
 };
 
