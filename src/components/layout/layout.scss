@@ -1,0 +1,115 @@
+// Core
+
+@use "../shared/animations";
+@use "../shared/colors";
+@use "../shared/effects";
+@use "../shared/media";
+
+// ---- Chassis.css ----
+
+@import "chassis-css/dist/sass/chassis";
+
+// ---- Body ----
+
+$body--background-color: colors.$white;
+$body--color: colors.$slate;
+
+$body--background-color--dark: colors.$black;
+$body--color--dark: colors.$white;
+
+body {
+    background-color: var(--body--background-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: var(--body--color);
+    @include animations.transition(background-color, color);
+
+    @include media.theme("light") {
+        --body--background-color: #{$body--background-color};
+        --body--color: #{$body--color};
+    }
+
+    @include media.theme("dark") {
+        --body--background-color: #{$body--background-color--dark};
+        --body--color: #{$body--color--dark};
+    }
+}
+
+// ---- Links ----
+
+$link--color: colors.$blue;
+$link--hover--color: darken(colors.$blue, 10%);
+$link--focus--color: colors.$red;
+
+$link--color--dark: lighten(colors.$blue, 16%);
+$link--hover--color--dark: colors.$blue;
+$link--focus--color--dark: lighten(colors.$red, 16%);
+
+a {
+    color: var(--link--color);
+    @include animations.transition(color);
+
+    @include media.theme("light") {
+        --link--color: #{$link--color};
+    }
+
+    @include media.theme("dark") {
+        --link--color: #{$link--color--dark};
+    }
+
+    &:hover {
+        @include media.theme("light") {
+            --link--color: #{$link--hover--color};
+        }
+
+        @include media.theme("dark") {
+            --link--color: #{$link--hover--color--dark};
+        }
+    }
+
+    &:focus {
+        @include media.theme("light") {
+            --link--color: #{$link--focus--color};
+        }
+
+        @include media.theme("dark") {
+            --link--color: #{$link--focus--color--dark};
+        }
+    }
+}
+
+// ---- Code ----
+
+$code--background-color: darken(colors.$light-gray, 5%);
+$code--color: colors.$black;
+
+$code--background-color--dark: colors.$slate;
+$code--color--dark: colors.$white;
+
+*:not(pre) > code {
+    padding: 0.025rem 0.25rem;
+    border-radius: effects.$border-radius;
+    background-color: var(--code--background-color);
+    color: var(--code--color);
+    @include animations.transition(background-color, color);
+
+    @include media.theme("light") {
+        --code--background-color: #{$code--background-color};
+        --code--color: #{$code--color};
+    }
+
+    @include media.theme("dark") {
+        --code--background-color: #{$code--background-color--dark};
+        --code--color: #{$code--color--dark};
+    }
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    &__content {
+        flex-grow: 1;
+    }
+}

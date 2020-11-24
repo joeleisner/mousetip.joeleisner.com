@@ -1,0 +1,170 @@
+// Footer
+
+@use "../shared/animations";
+@use "../shared/colors";
+@use "../shared/media";
+
+// ---- Footer ----
+
+$border-color: darken(colors.$light-gray, 5%);
+$border-color--dark: darken(colors.$slate, 10%);
+
+.footer {
+    border-top: 1px solid var(--footer--border-color);
+    @include animations.transition(border-color);
+
+    @include media.theme("light") {
+        --footer--border-color: #{$border-color};
+    }
+
+    @include media.theme("dark") {
+        --footer--border-color: #{$border-color--dark};
+    }
+
+    $link--color: colors.$slate;
+    $link--active--color: colors.$black;
+
+    $link--color--dark: colors.$light-gray;
+    $link--active--color--dark: darken(colors.$light-gray, 10%);
+
+    a,
+    button {
+        @include media.theme("light") {
+            --link--color: #{$link--color};
+        }
+
+        @include media.theme("dark") {
+            --link--color: #{$link--color--dark};
+        }
+
+        &:hover,
+        &:focus {
+            @include media.theme("light") {
+                --link--color: #{$link--active--color};
+            }
+
+            @include media.theme("dark") {
+                --link--color: #{$link--active--color--dark};
+            }
+        }
+    }
+
+    button {
+        color: var(--link--color);
+        @include animations.transition(color);
+    }
+
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 0;
+        padding-right: 0;
+
+        @include media.breakpoint("sm") {
+            flex-direction: row;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+
+    &__copyright {
+        margin-bottom: 0;
+        padding-top: 1rem;
+        padding-bottom: 0.5rem;
+    }
+
+    &__copyright,
+    &__information {
+        @include media.breakpoint("sm") {
+            padding: 0;
+        }
+    }
+
+    &__information {
+        padding-top: 0.5rem;
+        padding-bottom: 1rem;
+
+        $information__icon--color: colors.$red;
+        $information__icon--color--dark: lighten(colors.$red, 16%);
+
+        svg {
+            color: var(--footer__icon--color);
+            @include animations.transition(color);
+
+            @include media.theme("light") {
+                --footer__icon--color: #{$information__icon--color};
+            }
+
+            @include media.theme("dark") {
+                --footer__icon--color: #{$information__icon--color--dark};
+            }
+        }
+    }
+
+    &__links {
+        display: flex;
+        width: 100%;
+        border-top: 1px solid var(--footer--border-color);
+        @include animations.transition(border-color);
+
+        @include media.breakpoint("sm") {
+            display: inline-flex;
+            width: auto;
+            border-top: none;
+        }
+
+        & > * {
+            flex: 1;
+            padding: 1rem;
+            border-right: 1px solid var(--footer--border-color);
+            background-color: var(--link--background-color);
+            text-align: center;
+            @include animations.transition(border-color, background-color);
+
+            $links__link--active--background-color: colors.$light-gray;
+            $links__link--active--color: colors.$black;
+
+            $links__link--active--background-color--dark: darken(
+                colors.$slate,
+                5%
+            );
+            $links__link--active--color--dark: colors.$white;
+
+            &:hover,
+            &:focus {
+                @include media.theme("light") {
+                    --link--background-color: #{$links__link--active--background-color};
+                    --link--color: #{$links__link--active--color};
+                }
+
+                @include media.theme("dark") {
+                    --link--background-color: #{$links__link--active--background-color--dark};
+                    --link--color: #{$links__link--active--color--dark};
+                }
+            }
+
+            &:first-child {
+                @include media.breakpoint("sm") {
+                    border-left: 1px solid var(--footer--border-color);
+                }
+            }
+
+            &:last-child {
+                border-right: none;
+
+                @include media.breakpoint("sm") {
+                    border-right: 1px solid var(--footer--border-color);
+                }
+            }
+        }
+
+        button {
+            border-top: none;
+            border-bottom: none;
+            border-left: none;
+        }
+    }
+}

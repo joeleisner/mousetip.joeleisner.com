@@ -1,0 +1,66 @@
+// Card component
+
+@use "../shared/animations";
+@use "../shared/colors";
+@use "../shared/effects";
+@use "../shared/media";
+
+// ---- Card ----
+
+$card--border-color: darken(colors.$light-gray, 5%);
+$card--background-color: colors.$white;
+
+$card--border-color--dark: darken(colors.$slate, 10%);
+$card--background-color--dark: darken(colors.$slate, 5%);
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 1rem;
+    border: 1px solid var(--card--border-color);
+    border-radius: effects.$border-radius;
+    background-color: var(--card--background-color);
+    text-align: center;
+    box-shadow: var(--card--box-shadow);
+    @include animations.transition(border-color, background-color, box-shadow);
+
+    @include media.theme("light") {
+        --card--border-color: #{$card--border-color};
+        --card--background-color: #{$card--background-color};
+        --card--box-shadow: #{effects.$drop-shadow};
+    }
+
+    @include media.theme("dark") {
+        --card--border-color: #{$card--border-color--dark};
+        --card--background-color: #{$card--background-color--dark};
+    }
+
+    &__title {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        margin-bottom: 0.5rem;
+        font-size: 1.75rem;
+    }
+
+    &__icon {
+        margin-right: 0.5rem;
+
+        .card__title--only-icon & {
+            font-size: 2.5rem;
+            margin-right: 0;
+        }
+    }
+
+    &__heading {
+        margin-bottom: 0;
+    }
+
+    &__description {
+        & > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

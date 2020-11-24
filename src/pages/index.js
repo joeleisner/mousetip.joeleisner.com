@@ -11,7 +11,7 @@ import Icon from '../components/icon';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-import '../sass/pages/index.sass';
+import './index.scss';
 
 const title = 'Pure JS Mousetip',
     tagline = 'A vanilla javascript solution for creating tooltips that follow your mouse.',
@@ -58,8 +58,7 @@ const IndexPage = () => (
         <Code language="shell" example={false}>
             npm install purejs-mousetip
         </Code>
-        <h2>Changelog</h2>
-        <h3>3.0.0</h3>
+        <h2>Latest release <small>3.0.0</small></h2>
         <p>Pure JS Mousetip has been overhauled from the ground up to support some killer new features. Here's what you can look forward to:</p>
         <ul>
             <li>
@@ -75,7 +74,7 @@ const IndexPage = () => (
                 <ul>
                     <li>The <code>position</code> adjustment has been renamed <code>direction</code> to distinguish it from CSS position.</li>
                     <li>All style adjustments can be made under the <code>style</code> adjustment object, alleviating the need to prefix them with <code>css</code></li>
-                    <li>A new <code>animations</code> adjustment is available! This can be set to a boolean to enable/disable mousetip animations, or it can be set to an object to adjust animation settings such as duration, from/to, timing, and more.</li>
+                    <li>A new <code>animations</code> adjustment is available! This can be set to a boolean to enable/disable mousetip animations, or it can be set to an object to adjust animation settings such as duration, from/to transform/opacity, timing, and more.</li>
                 </ul>
             </li>
             <li>

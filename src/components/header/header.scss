@@ -1,0 +1,255 @@
+// Header
+
+@use "../shared/animations";
+@use "../shared/colors";
+@use "../shared/effects";
+@use "../shared/media";
+
+// ---- Header ----
+
+$crimson: colors.$mousetip-crimson;
+$pink: colors.$mousetip-pink;
+
+$crimson--dark: darken(colors.$mousetip-crimson, 10%);
+$pink--dark: darken(colors.$mousetip-pink, 10%);
+
+.header {
+    margin-bottom: 1rem;
+    background: var(--header--crimson);
+    background: linear-gradient(
+        45deg,
+        var(--header--crimson) 0%,
+        var(--header--crimson) 25%,
+        var(--header--pink) 100%
+    );
+    font-size: 1.25rem;
+    color: colors.$white;
+    overflow: hidden;
+    @include animations.transition(background);
+
+    @include media.theme("light") {
+        --header--crimson: #{$crimson};
+        --header--pink: #{$pink};
+    }
+
+    @include media.theme("dark") {
+        --header--crimson: #{$crimson--dark};
+        --header--pink: #{$pink--dark};
+    }
+
+    &__level-wrapper:after {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 100%;
+        margin-bottom: 1rem;
+        background: rgba(colors.$white, 0.6);
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(colors.$white, 0.2) 10%,
+            rgba(colors.$white, 0.2) 90%,
+            transparent 100%
+        );
+
+        @include media.breakpoint("sm") {
+            margin-bottom: 1.5rem;
+        }
+
+        @include media.breakpoint("md") {
+            margin-bottom: 2rem;
+        }
+
+        @include media.breakpoint("lg") {
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__level {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1rem;
+        padding-bottom: 0.5rem;
+
+        @include media.breakpoint("sm") {
+            flex-direction: row;
+        }
+    }
+
+    &__brand {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        @include media.breakpoint("sm") {
+            width: auto;
+        }
+    }
+
+    &__logo {
+        fill: colors.$white;
+        width: 2rem;
+        margin-right: 0.5rem;
+    }
+
+    &__title-version {
+        flex: 1;
+        display: flex;
+        align-items: baseline;
+
+        a {
+            --link--color: #{colors.$white} !important;
+
+            margin-right: 0.5rem;
+            font-size: 1.75rem;
+            font-weight: bold;
+            text-decoration: none;
+            @include animations.transition(opacity);
+
+            &:hover,
+            &:focus {
+                --link--color: #{colors.$white} !important;
+
+                opacity: 0.8;
+            }
+        }
+
+        p {
+            margin-bottom: 0;
+            opacity: 0.8;
+        }
+    }
+
+    &__nav-toggle {
+        display: inline-flex;
+        padding: 0.25rem 0.5rem;
+        border: none;
+        border-radius: effects.$border-radius;
+        background-color: transparent;
+        font-size: 1.75rem;
+        color: colors.$white;
+        @include animations.transition(background-color);
+
+        @include media.breakpoint("sm") {
+            display: none;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: rgba(colors.$black, 0.2);
+        }
+    }
+
+    &__nav {
+        display: none;
+        margin-top: 0.5rem;
+
+        @include media.breakpoint("sm") {
+            display: flex;
+        }
+
+        &.open {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            @include media.breakpoint("sm") {
+                flex-direction: row;
+                width: auto;
+            }
+        }
+    }
+
+    &__nav-link {
+        --link--color: #{colors.$white} !important;
+
+        padding: 0.5rem;
+        border-radius: effects.$border-radius;
+        background-color: var(--link--background-color);
+        text-decoration: none;
+        @include animations.transition(background-color);
+
+        @include media.breakpoint("sm") {
+            padding: 0.25rem 0.5rem;
+        }
+
+        &:hover,
+        &:focus {
+            --link--background-color: #{rgba(colors.$black, 0.2)};
+            --link--color: #{colors.$white} !important;
+
+            text-decoration: none;
+        }
+
+        // ---- Active nav link ----
+
+        $nav-link--active--background-color: colors.$white;
+        $nav-link--active--color: colors.$slate;
+        $nav-link--active--interaction--background-color: colors.$light-gray;
+        $nav-link--active--interaction--color: colors.$black;
+
+        $nav-link--active--background-color--dark: darken(colors.$slate, 5%);
+        $nav-link--active--color--dark: colors.$white;
+        $nav-link--active--interaction--background-color--dark: darken(
+            colors.$slate,
+            10%
+        );
+        $nav-link--active--interaction--color--dark: colors.$white;
+
+        &--active {
+            box-shadow: effects.$drop-shadow;
+
+            @include media.theme("light") {
+                --link--background-color: #{$nav-link--active--background-color};
+                --link--color: #{$nav-link--active--color} !important;
+            }
+
+            @include media.theme("dark") {
+                --link--background-color: #{$nav-link--active--background-color--dark};
+                --link--color: #{$nav-link--active--color--dark} !important;
+            }
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+
+                @include media.theme("light") {
+                    --link--background-color: #{$nav-link--active--interaction--background-color};
+                    --link--color: #{$nav-link--active--interaction--color} !important;
+                }
+
+                @include media.theme("dark") {
+                    --link--background-color: #{$nav-link--active--interaction--background-color--dark};
+                    --link--color: #{$nav-link--active--interaction--color--dark} !important;
+                }
+            }
+        }
+    }
+
+    &__summary p {
+        line-height: 1.5;
+    }
+
+    // --- Angles ----
+
+    $angles--fill: colors.$white;
+    $angles--fill--dark: colors.$black;
+
+    &__angles {
+        display: block;
+        fill: var(--header__angles--fill);
+        margin-bottom: -10px;
+        min-width: 1440px;
+        @include animations.transition(fill);
+
+        @include media.theme("light") {
+            --header__angles--fill: #{$angles--fill};
+        }
+
+        @include media.theme("dark") {
+            --header__angles--fill: #{$angles--fill--dark};
+        }
+    }
+}

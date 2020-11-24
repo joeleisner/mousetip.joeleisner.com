@@ -1,0 +1,119 @@
+// Alert
+
+@use "../shared/animations";
+@use "../shared/colors";
+@use "../shared/effects";
+@use "../shared/media";
+
+// ---- Alert ----
+
+$border-color: darken(colors.$light-gray, 5%);
+$background-color: colors.$white;
+$border-color--dark: darken(colors.$slate, 10%);
+$background-color--dark: darken(colors.$slate, 5%);
+
+.alert {
+    display: flex;
+    margin-bottom: 1rem;
+    border: 1px solid var(--alert--border-color);
+    border-radius: effects.$border-radius;
+    background-color: var(--alert--background-color);
+    overflow: hidden;
+    box-shadow: var(--alert--box-shadow);
+    @include animations.transition(border-color, background-color, box-shadow);
+
+    @include media.theme("light") {
+        --alert--border-color: #{$border-color};
+        --alert--background-color: #{$background-color};
+        --alert--box-shadow: #{effects.$drop-shadow};
+    }
+
+    @include media.theme("dark") {
+        --alert--border-color: #{$border-color--dark};
+        --alert--background-color: #{$background-color--dark};
+    }
+
+    // ---- Icon ----
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        border-right: 1px solid var(--alert--border-color);
+        font-size: 1.75rem;
+        background-color: var(--alert__icon--background-color);
+        color: var(--alert__icon--color, colors.$white);
+        @include animations.transition(border-color, background-color);
+
+        $icon--variants: (
+            "info": colors.$blue,
+            "warning": (
+                colors.$yellow,
+                colors.$slate
+            ),
+            "danger": colors.$red,
+            "success": colors.$green
+        );
+
+        @mixin icon--theme($theme, $color) {
+            $background: null;
+            $foreground: null;
+
+            @if type-of($color) == "list" {
+                $background: nth($color, 1);
+                $foreground: nth($color, 2);
+            } @else {
+                $background: $color;
+            }
+
+            @if $background and $theme == "dark" {
+                $background: darken($background, 5%);
+            }
+
+            @if $foreground and $theme == "dark" {
+                $foreground: darken($foreground, 5%);
+            }
+
+            @include media.theme($theme) {
+                --alert__icon--background-color: #{$background};
+                @if $foreground {
+                    --alert__icon--color: #{$foreground};
+                }
+            }
+        }
+
+        @mixin icon--variants {
+            @each $style, $color in $icon--variants {
+                &--#{$style} {
+                    @include icon--theme("light", $color);
+                    @include icon--theme("dark", $color);
+                }
+            }
+        }
+
+        @include icon--variants;
+    }
+
+    // ---- Icon & content ----
+
+    &__icon,
+    &__content {
+        padding: 1rem;
+    }
+
+    // ---- Content ----
+
+    &__content {
+        display: flex;
+        align-items: center;
+
+        & > *:first-child {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        & > *:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
+}

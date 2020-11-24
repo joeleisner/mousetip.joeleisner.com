@@ -36,7 +36,7 @@ const StartPage = () => (
     <span><strong>mt:m</strong>="Test message!"</span>
 </div>`}</Code>
                 <Alert type="warning">
-                    <p>Pure JS Mousetip only works when using a mouse, so if you&rsquo;re viewing this from a smartphone or some tablets, the above example will not work as touch support is not yet an added feature.</p>
+                    <p>Pure JS Mousetip only works when using a mouse. If you&rsquo;re viewing this from a smartphone or some tablets, the above example will not work.</p>
                 </Alert>
             </TabPanel>
             <TabPanel>

@@ -1,0 +1,13 @@
+// Animations
+
+$transition-timing: 0.15s ease-in-out;
+
+@mixin transition($properties...) {
+    $rules: null;
+
+    @each $property in $properties {
+        $rules: append($rules, $property $transition-timing, comma);
+    }
+
+    transition: $rules;
+}

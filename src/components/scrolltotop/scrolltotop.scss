@@ -1,0 +1,53 @@
+// Scroll to top
+
+@use "../shared/animations";
+@use "../shared/colors";
+@use "../shared/effects";
+@use "../shared/media";
+
+// ---- Scroll to top ----
+
+$border-color: darken(colors.$mousetip-crimson, 5%);
+$background-color: colors.$mousetip-crimson;
+
+$border-color--dark: darken(colors.$mousetip-pink, 15%);
+$background-color--dark: darken(colors.$mousetip-pink, 10%);
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 1rem;
+    right: -76px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border: 1px solid var(--scrolltotop--border-color);
+    border-radius: 100%;
+    background-color: var(--scrolltotop--background-color);
+    font-size: 2rem;
+    line-height: 1;
+    color: colors.$white;
+    box-shadow: effects.$drop-shadow;
+    @include animations.transition(right, background-color);
+
+    @include media.theme("light") {
+        --scrolltotop--border-color: #{$border-color};
+        --scrolltotop--background-color: #{$background-color};
+    }
+
+    @include media.theme("dark") {
+        --scrolltotop--border-color: #{$border-color--dark};
+        --scrolltotop--background-color: #{$background-color--dark};
+    }
+
+    &:hover,
+    &:focus {
+        background-color: var(--scrolltotop--border-color);
+    }
+
+    &[aria-hidden="false"] {
+        right: 1rem;
+    }
+}

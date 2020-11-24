@@ -37,10 +37,15 @@ const ConfigurationPage = () => (
                 <Code language="javascript" example={false}>{`const mouseTip = new MouseTip({
     animations: {
         duration: '.5s',
-        from:     'transform:translateY(1rem);opacity:0;',
-        name:     'awesomeTransition',
-        to:       'transform:translateY(-1rem);opacity:1;',
-        timing:   'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+        from: {
+            transform: 'translateY(1rem)',
+            opacity: 0
+        },
+        to: {
+            transform: 'translateY(-1rem)',
+            opacity: 1
+        },
+        timing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
     },
     direction: [ 'top', 'left' ],
     html:      false,
@@ -73,10 +78,15 @@ const ConfigurationPage = () => (
 {
     animations: {
         duration: '.5s',
-        from:     'transform:translateY(1rem);opacity:0;',
-        name:     'awesomeTransition',
-        to:       'transform:translateY(-1rem);opacity:1;',
-        timing:   'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+        from: {
+            transform: 'translateY(1rem)',
+            opacity: 0
+        },
+        to: {
+            transform: 'translateY(-1rem)',
+            opacity: 1
+        },
+        timing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
     }
 }`}</Code>
                 <h3 className="h5">animations</h3>
@@ -97,22 +107,19 @@ const ConfigurationPage = () => (
                 <p>Sets the duration of mousetip animations.</p>
                 <h4 className="h5">animations.from</h4>
                 <ul>
-                    <li>Type: <code>String</code></li>
-                    <li>Default: <code>'transform:translateY(.5rem);opacity:0;'</code></li>
+                    <li>Type: <code>Object</code></li>
+                    <li>Default: <code>{'{ transform: \'translateY(.5rem)\', opacity: 0 }'}</code></li>
                 </ul>
                 <p>Sets the starting point of mousetip animations when created and the default ending point of mousetip animations when deleted.</p>
-                <h4 className="h5">animations.name</h4>
-                <ul>
-                    <li>Type: <code>String</code></li>
-                    <li>Default: <code>'mouseTipTransition'</code></li>
-                </ul>
-                <p>Sets the <code>@keyframes</code> name used for mousetip animations.</p>
                 <h4 className="h5">animations.to</h4>
                 <ul>
-                    <li>Type: <code>String</code></li>
-                    <li>Default: <code>'transform:translateY(0);opacity:1;'</code></li>
+                    <li>Type: <code>Object</code></li>
+                    <li>Default: <code>{'{ transform: \'translateY(0)\', opacity: 1 }'}</code></li>
                 </ul>
                 <p>Sets the ending point of mousetip animations when created and the default starting point of mousetip animations when deleted.</p>
+                <Alert>
+                    <p>The <code>animations.from</code> and <code>animations.to</code> keys are named for their role in mousetip animations when a mousetip is created. When a mousetip is deleted, the animation is played in reverse.</p>
+                </Alert>
                 <h4 className="h5">animations.timing</h4>
                 <ul>
                     <li>Type: <code>String</code></li>
@@ -120,7 +127,10 @@ const ConfigurationPage = () => (
                 </ul>
                 <p>Sets the timing function used for mousetip animations.</p>
                 <Alert>
-                    <p>The <code>animations.from</code> and <code>animations.to</code> keys are named for their role in mousetip animations when a mousetip is created. When a mousetip is deleted, the animation is played in reverse.</p>
+                    <p>All custom <code>animations</code> settings refer to a CSS custom property of the same name and are added to an override style tag when creating a mousetip.</p>
+                </Alert>
+                <Alert type="warning">
+                    <p>The <code>animations</code> settings do not not have any defaults. The default values shown are javascript representations of the values found within the default stylesheet.</p>
                 </Alert>
             </TabPanel>
             <TabPanel>
@@ -216,7 +226,7 @@ const ConfigurationPage = () => (
                 </ul>
                 <p>Sets the short selector.</p>
                 <Alert>
-                    <p>A selector is the name of an attribute of a target element Pure JS Mousetip looks for to show a mousetip when that element is hovered and the prefix for any local attributes applied to a target element.</p>
+                    <p>A selector is the name of an attribute of a target element Pure JS Mousetip looks for to show a mousetip when that element is hovered and the prefix for any local attributes applied to a target element. It is also used as the class name of the mousetip element if custom stylesheets are enabled.</p>
                 </Alert>
             </TabPanel>
             <TabPanel>
@@ -234,6 +244,9 @@ const ConfigurationPage = () => (
                     <li>Disables default global styles when set to <code>true</code></li>
                     <li>Enables default global styles when set to <code>false</code></li>
                 </ul>
+                <Alert>
+                    <p>When set to <code>true</code>, the class name of the mousetip element becomes the full selector (default: <code>mousetip</code>).</p>
+                </Alert>
             </TabPanel>
             <TabPanel>
                 <h2>Styles</h2>
@@ -297,7 +310,10 @@ const ConfigurationPage = () => (
                 </ul>
                 <p>Sets the global z-index property for any mousetip.</p>
                 <Alert>
-                    <p>All <code>styles</code> settings refer to a CSS property of the same name and are used when creating the CSS that globally styles any mousetip.</p>
+                    <p>All custom <code>styles</code> settings refer to a CSS custom property of the same name and are added to an override style tag when creating a mousetip.</p>
+                </Alert>
+                <Alert type="warning">
+                    <p>The <code>styles</code> settings do not not have any defaults. The default values shown are javascript representations of the values found within the default stylesheet.</p>
                 </Alert>
             </TabPanel>
         </Tabs>

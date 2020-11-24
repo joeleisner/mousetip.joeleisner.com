@@ -1,0 +1,150 @@
+// Tabs (react-tabs)
+
+@use "../shared/animations";
+@use "../shared/colors";
+@use "../shared/effects";
+@use "../shared/media";
+
+// =tabs--theme-light
+//     --tabs__list--border-color: #{darken($light-gray, 5%)}
+//     --tabs__tab--hover--border-color: #{$slate}
+//     --tabs__tab--selected--color: #{$mousetip-crimson}
+
+// =tabs--theme-dark
+//     --tabs__list--border-color: #{$slate}
+//     --tabs__tab--hover--border-color: #{$white}
+//     --tabs__tab--selected--color: #{lighten($mousetip-crimson, 10%)}
+
+// \:root
+//     +tabs--theme-light
+
+// +color-scheme(dark)
+//     \:root
+//         +tabs--theme-dark
+
+// [data-theme="light"]
+//     +tabs--theme-light
+
+// [data-theme="dark"]
+//     +tabs--theme-dark
+
+// ---- Tabs ----
+
+.tabs {
+    // ---- List ----
+
+    $list--border-color: darken(colors.$light-gray, 5%);
+    $list--border-color--dark: colors.$slate;
+
+    &__list {
+        border-left: .125rem solid var(--tabs__list--border-color);
+        margin: 0 0 1rem;
+        padding: 0;
+        @include animations.transition(border-color);
+
+        @include media.theme("light") {
+            --tabs__list--border-color: #{$list--border-color};
+        }
+
+        @include media.theme("dark") {
+            --tabs__list--border-color: #{$list--border-color--dark};
+        }
+
+        @include media.breakpoint("sm") {
+            border-left: none;
+            border-bottom: .125rem solid var(--tabs__list--border-color);
+        }
+    }
+
+    // ---- Tab ----
+
+    &__tab {
+        display: block;
+        position: relative;
+        left: -.125rem;
+        list-style: none;
+        padding: .5rem;
+        border-left: .125rem solid var(--tabs__tab--border-color, transparent);
+        border-top-right-radius: effects.$border-radius;
+        border-bottom-right-radius: effects.$border-radius;
+        cursor: pointer;
+        @include animations.transition(border-color, background-color);
+
+        @include media.breakpoint("sm") {
+            display: inline-block;
+            left: 0;
+            bottom: -.125rem;
+            border-left: none;
+            border-bottom: .125rem solid var(--tabs__tab--border-color, transparent);
+            border-top-left-radius: effects.$border-radius;
+            border-bottom-right-radius: 0;
+        }
+
+        $tab--active--border-color: colors.$slate;
+        $tab--active--border-color--dark: colors.$white;
+
+        &:hover, &:focus {
+            @include media.theme("light") {
+                --tabs__tab--border-color: #{$tab--active--border-color};
+            }
+
+            @include media.theme("dark") {
+                --tabs__tab--border-color: #{$tab--active--border-color--dark};
+            }
+        }
+
+        $tabs--selected--border-color: colors.$mousetip-crimson;
+        $tabs--selected--border-color--dark: lighten(colors.$mousetip-crimson, 10%);
+
+        @mixin tab--selected--theme {
+            @include media.theme("light") {
+                --tabs__tab--border-color: #{$tabs--selected--border-color};
+            }
+
+            @include media.theme("dark") {
+                --tabs__tab--border-color: #{$tabs--selected--border-color--dark};
+            }
+        }
+
+        &--selected {
+            @include tab--selected--theme;
+
+            &:hover, &:focus {
+                @include tab--selected--theme;
+            }
+        }
+    }
+
+    // ---- Panel ----
+
+    &__panel {
+        $panel__list--border-color: darken(colors.$light-gray, 5%);
+        $panel__list--border-color--dark: colors.$slate;
+
+        ul {
+            line-height: 1.5;
+            @include animations.transition(border-color);
+
+            @include media.theme("light") {
+                --ul--border-color: #{$panel__list--border-color};
+            }
+
+            @include media.theme("dark") {
+                --ul--border-color: #{$panel__list--border-color--dark};
+            }
+        }
+
+        .h5 + ul,
+        .h5 ~ ul:first-of-type {
+            list-style: none;
+            padding-left: .5rem;
+            border-left: .125rem solid var(--ul--border-color);
+
+            ul {
+                list-style: none;
+                padding-left: .5rem;
+                border-left: .125rem solid var(--ul--border-color);
+            }
+        }
+    }
+}

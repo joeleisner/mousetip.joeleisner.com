@@ -1,0 +1,101 @@
+// Index page
+
+@use "../components/shared/animations";
+@use "../components/shared/colors";
+@use "../components/shared/effects";
+@use "../components/shared/media";
+
+// ---- Index ----
+
+.index {
+    // ---- Buttons ----
+
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+
+        @include media.breakpoint("sm") {
+            flex-direction: row;
+        }
+    }
+
+    // ---- Button ----
+
+    &__button {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--index__button--border-color);
+        border-radius: effects.$border-radius;
+        background-color: var(--index__button--background-color);
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--index__button--color, colors.$white);
+        @include animations.transition(border-color, background-color, color);
+
+        @include media.breakpoint("sm") {
+            margin-right: 0.5rem;
+        }
+
+        &:hover,
+        &:focus {
+            --index__button--background-color: #{rgba(colors.$black, 0.2)};
+            --index__button--color: #{colors.$white};
+        }
+
+        svg {
+            margin-right: 0.5rem;
+        }
+
+        // ---- Highlighted button ----
+
+        $button--highlight--border-color: darken(colors.$light-gray, 5%);
+        $button--highlight--background-color: colors.$white;
+        $button--highlight--color: colors.$slate;
+
+        $button--highlight--border-color--dark: colors.$black;
+        $button--highlight--background-color--dark: darken(colors.$slate, 5%);
+        $button--highlight--color--dark: colors.$white;
+
+        &--highlight {
+            box-shadow: effects.$drop-shadow;
+
+            @include media.theme("light") {
+                --index__button--border-color: #{$button--highlight--border-color};
+                --index__button--background-color: #{$button--highlight--background-color};
+                --index__button--color: #{$button--highlight--color};
+            }
+
+            @include media.theme("dark") {
+                --index__button--border-color: #{$button--highlight--border-color--dark};
+                --index__button--background-color: #{$button--highlight--background-color--dark};
+                --index__button--color: #{$button--highlight--color--dark};
+            }
+
+            // ---- Highlighted, active button ----
+
+            $button--highlight--active--background-color: colors.$light-gray;
+            $button--highlight--active--color: colors.$black;
+
+            $button--highlight--active--background-color--dark: darken(
+                colors.$slate,
+                10%
+            );
+            $button--highlight--active--color--dark: colors.$white;
+
+            &:hover,
+            &:focus {
+                @include media.theme("light") {
+                    --index__button--background-color: #{$button--highlight--active--background-color};
+                    --index__button--color: #{$button--highlight--active--color};
+                }
+
+                @include media.theme("dark") {
+                    --index__button--background-color: #{$button--highlight--active--background-color--dark};
+                    --index__button--color: #{$button--highlight--active--color--dark};
+                }
+            }
+        }
+    }
+}

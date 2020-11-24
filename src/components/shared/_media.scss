@@ -1,0 +1,21 @@
+// Media queries
+
+@import "chassis-css/dist/sass/variables/mq";
+@import "chassis-css/dist/sass/mixins/mq";
+
+@mixin breakpoint($breakpoint) {
+    @include media-query($breakpoint) {
+        @content;
+    }
+}
+
+// Generate a prefers-color-scheme media query
+@mixin theme($theme) {
+    @media (prefers-color-scheme: $theme) {
+        @content;
+    }
+
+    :root[data-theme="#{ $theme }"] & {
+        @content;
+    }
+}

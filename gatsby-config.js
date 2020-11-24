@@ -51,7 +51,13 @@ module.exports = {
                 icon: 'src/images/icon.png'
             }
         },
-        'gatsby-plugin-sass',
+        {
+            resolve: 'gatsby-plugin-sass',
+            options: {
+                implementation: require('sass'),
+                includePaths: ['node_modules']
+            }
+        },
         {
             resolve: 'gatsby-plugin-react-svg',
             options: {
