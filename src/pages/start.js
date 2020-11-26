@@ -26,6 +26,7 @@ const StartPage = () => (
                 <Tab>What&rsquo;s a &ldquo;mousetip?&rdquo;</Tab>
                 <Tab>Basic setup</Tab>
                 <Tab>Advanced setup</Tab>
+                <Tab>Accessibility</Tab>
             </TabList>
             <TabPanel>
                 <h2>What&rsquo;s a &ldquo;mousetip?&rdquo;</h2>
@@ -66,6 +67,17 @@ const MouseTip = require('purejs-mousetip');
 import MouseTip from 'purejs-mousetip';`}</Code>
                 <Alert>
                     <p>If you&rsquo;re working with ES2015 modules outside of a Node.js build system, you can always use the module build of <code>mousetip.js</code> (located in <code>/dist/modules</code> of the <code>purejs-mousetip</code> NPM package).</p>
+                </Alert>
+            </TabPanel>
+            <TabPanel>
+                <h2>Accessibility</h2>
+                <p>The default styles and functionality that ships with Pure JS Mousetip take into consideration reduced motion preferences via the <code>prefers-reduced-motion</code> CSS media feature. When a user has opted for reduced motion, the following will happen:</p>
+                <ul>
+                    <li>The animations of mousetip creation/deletion will become opacity transitions only.</li>
+                    <li>Mousetips will no longer follow the mouse. Instead, they appear statically in a position along the edge of its target element that corresponds to the direction globally/locally set.</li>
+                </ul>
+                <Alert>
+                    <p>You can learn more about the <code>prefers-reduced-motion</code> CSS media feature on the <ExternalLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" title="Mozilla Developer Network web docs, prefers-reduced-motion">Mozilla Developer Network web docs</ExternalLink>.</p>
                 </Alert>
             </TabPanel>
         </Tabs>

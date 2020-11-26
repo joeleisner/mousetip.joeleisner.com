@@ -22,6 +22,7 @@ const ConfigurationPage = () => (
         <Tabs>
             <TabList>
                 <Tab>Usage</Tab>
+                <Tab>ID</Tab>
                 <Tab>Animations</Tab>
                 <Tab>Direction</Tab>
                 <Tab>HTML</Tab>
@@ -35,6 +36,7 @@ const ConfigurationPage = () => (
                 <h2>Usage</h2>
                 <p>When initializing Pure JS Mousetip, you can pass in a global configuration object. This object sets global defaults for all mousetips, only superseded by local attributes.</p>
                 <Code language="javascript" example={false}>{`const mouseTip = new MouseTip({
+    id: 'awesome-mousetip',
     animations: {
         duration: '.5s',
         from: {
@@ -66,6 +68,18 @@ const ConfigurationPage = () => (
         zIndex:          '10000'
     }
 });`}</Code>
+            </TabPanel>
+            <TabPanel>
+                <h2>ID</h2>
+                <Code language="javascript" example={false}>{`{
+    id: 'awesome-mousetip'
+}`}</Code>
+                <h3 class="h5">id</h3>
+                <ul>
+                    <li>Type: <code>String</code></li>
+                    <li>Default: <code>null</code></li>
+                </ul>
+                <p>Sets the ID attribute of every mousetip created by a given instance. If a custom ID is not given, a random ID will be generated on <code>start()</code>.</p>
             </TabPanel>
             <TabPanel>
                 <h2>Animations</h2>
