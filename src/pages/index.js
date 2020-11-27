@@ -114,7 +114,7 @@ const IndexPage = () => (
                 Local attributes have been simplified and extended as well!
                 <ul>
                     <li>Style attributes no longer need the <code>css-</code> prefix, and have been renamed to more closely resemble they're CSS rules.</li>
-                    <li>A new <code>mousetip-style</code> attribute to alleviate the need for multiple style attributes or to style the mousetip locally beyond what's included.</li>
+                    <li>A new <code>mousetip:style</code> attribute to alleviate the need for multiple style attributes or to style the mousetip locally beyond what's included.</li>
                     <li>Shorthand variants are now a thing! Hate typing out <code>mousetip:background-color="..."</code>? Try <code>mt:bg="..."</code> instead.</li>
                 </ul>
             </li>
