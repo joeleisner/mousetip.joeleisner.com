@@ -29,15 +29,33 @@ class Card extends React.Component {
         );
     }
 
-    mousetip() {
+    startMousetip() {
         const settings = typeof this.props.mousetip === 'boolean' ? {} : this.props.mousetip;
         const mouseTip = new MouseTip(settings);
 
         mouseTip.start([this.card.current]);
+
+        this.mousetip = mouseTip;
     }
 
     componentDidMount() {
-        if (this.props.mousetip) this.mousetip();
+        if (this.props.mousetip) this.startMousetip();
+    }
+
+    stopMousetip() {
+        if (!this.mousetip) return;
+
+        const { css, overrides } = this.mousetip;
+
+        if (css) css.unuse();
+
+        if (overrides) overrides.parentNode.removeChild(overrides);
+
+        this.mousetip.stop();
+    }
+
+    componentWillUnmount() {
+        if (this.props.mousetip) this.stopMousetip();
     }
 
     render() {

@@ -27,10 +27,28 @@ class Code extends React.Component {
             targets    = this.example.current.querySelectorAll(`[${ mouseTip.selector.full }], [${ mouseTip.selector.short }]`);
 
         mouseTip.start(targets);
+
+        this.mousetip = mouseTip;
     }
 
     componentDidMount() {
         if (this.props.example) this.convertChildrenIntoCodeExample();
+    }
+
+    stopMousetip() {
+        if (!this.mousetip) return;
+
+        const { css, overrides } = this.mousetip;
+
+        if (css) css.unuse();
+
+        if (overrides) overrides.parentNode.removeChild(overrides);
+
+        this.mousetip.stop();
+    }
+
+    componentWillUnmount() {
+        if (this.props.mousetip) this.stopMousetip();
     }
 
     onCopy() {
